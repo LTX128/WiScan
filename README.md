@@ -37,7 +37,7 @@ Tu dois installer [Nmap](https://nmap.org/download.html) sur ta machine et **ajo
 # ⚙️ Configuration importante dans app.py
 
 **Dans le fichier `app.py`, il faut remplacer l'adresse IP utilisée dans la fonction de scan par l'adresse IP locale de votre machine sur le réseau.**
-Par exemple, dans la ligne où tu définis la plage IP à scanner **(ligne )**, modifie l’IP pour qu’elle corresponde à ton réseau local (par exemple 192.398.2.0/24 ou 10.0.0.0/24).
+Par exemple, dans la ligne où tu définis la plage IP à scanner **( ligne 131 )**, modifie l’IP pour qu’elle corresponde à ton réseau local (par exemple 192.398.2.0/24 ou 10.0.0.0/24).
 
 1. **Clonez ce dépôt sur votre machine :**
 
