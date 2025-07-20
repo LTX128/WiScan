@@ -1,7 +1,11 @@
 # WiScan 📡🔍
 
 WiScan est une application web moderne et intuitive qui vous permet de scanner votre réseau local (Wi-Fi / LAN) pour détecter **tous les appareils connectés**.  
-Elle affiche pour chaque appareil son adresse IP, MAC, nom d’hôte (si possible), type d’appareil, système d’exploitation estimé et son état (connecté ou non) — tout ça dans une interface web élégante, responsive et facile à utiliser.  
+Elle affiche pour chaque appareil son adresse IP, MAC, nom d’hôte (si possible), type d’appareil, système d’exploitation estimé et son état (connecté ou non) — tout ça dans une interface web élégante, responsive et facile à utiliser. 
+
+---
+
+## ⚠️ WiScan n'est pas compatible sur téléphone !
 
 ---
 
@@ -37,7 +41,16 @@ Tu dois installer [Nmap](https://nmap.org/download.html) sur ta machine et **ajo
 # ⚙️ Configuration importante dans app.py
 
 **Dans le fichier `app.py`, il faut remplacer l'adresse IP utilisée dans la fonction de scan par l'adresse IP locale de votre machine sur le réseau.**
+
 Par exemple, dans la ligne où tu définis la plage IP à scanner **( ligne 131 )**, modifie l’IP pour qu’elle corresponde à ton réseau local (par exemple 192.398.2.0/24 ou 10.0.0.0/24).
+
+**Pour trouver ton IP locale sous Windows, ouvre un terminal (PowerShell ou cmd) et tape :**
+
+```bash
+ipconfig
+```
+
+**Cherche la ligne "IPv4 Address" de ta connexion active.**
 
 1. **Clonez ce dépôt sur votre machine :**
 
