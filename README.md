@@ -34,7 +34,7 @@ Tu dois installer [Nmap](https://nmap.org/download.html) sur ta machine et **ajo
 
 ## 🛠️ Installation & utilisation
 
-Clone ce dépôt sur ta machine :
+1. **Clone ce dépôt sur ta machine :**
 
 ```bash
 git clone https://github.com/ton-utilisateur/WiScan.git
