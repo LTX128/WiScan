@@ -36,9 +36,10 @@ Tu dois installer [Nmap](https://nmap.org/download.html) sur ta machine et **ajo
 
 2. **Installer Python** : https://www.youtube.com/watch?v=rq-36A2SvhE&t=9s
 
-## 🛠️ Installation & utilisation
+# 🛠️ Installation & utilisation
 
-# ⚙️ Configuration importante dans app.py
+
+## ⚙️ Configuration importante dans app.py
 
 **Dans le fichier `app.py`, il faut remplacer l'adresse IP utilisée dans la fonction de scan par l'adresse IP locale de votre machine sur le réseau.**
 
