@@ -128,7 +128,7 @@ def index():
 
 @app.route("/scan")
 def scan():
-    network = "5.49.148.116/24"   #X.X.X.X = Votre IP !
+    network = "192.168.1.255/24"   #X.X.X.X = Votre IP !
     devices = scan_network(network)
     return jsonify(devices)
 
