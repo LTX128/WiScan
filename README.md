@@ -46,3 +46,39 @@ cd WiScan
 pip install -r requirements.txt
 ```
 
+3. **Lancez le serveur Flask :**
+```bash
+python app.py
+```
+
+4. **Ouvrez votre navigateur et allez à l’adresse :**
+```bash
+http://127.0.0.1:5000
+```
+---
+
+5. **Cliquez sur le bouton "Scanner le réseau" et attendez la fin du scan (cela peut prendre 1 à 2 minutes selon le nombre d’appareils).**
+
+ℹ️ **Notes importantes**
+
+- Le scan réseau doit être lancé depuis un ordinateur connecté au réseau local.  
+- L’interface web peut être consultée depuis un téléphone, tablette ou PC, mais le scan ne fonctionne pas sur mobile directement.  
+- Pour que le scan soit complet et efficace, assurez-vous que votre firewall ne bloque pas Nmap et que vous avez les permissions nécessaires.  
+- La détection des noms d’appareils et OS estimé est basée sur des heuristiques et peut ne pas être 100% précise.
+
+🖼️ **Aperçu**
+
+*(Ajoutez un screenshot ici si vous le souhaitez)*
+
+🤝 **Contribution**
+
+Les contributions sont bienvenues !  
+N’hésitez pas à ouvrir une issue ou faire une pull request.
+
+📄 **Licence**
+
+MIT License — libre à vous de modifier et partager.
+
+---
+
+Amusez-vous bien et découvrez tout ce qui se cache sur votre réseau local avec WiScan ! 🎉
