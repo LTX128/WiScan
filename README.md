@@ -1,6 +1,6 @@
 # WiScan 📡🔍
 
-WiScan est une application web moderne et intuitive qui te permet de scanner ton réseau local (Wi-Fi / LAN) pour détecter **tous les appareils connectés**.  
+WiScan est une application web moderne et intuitive qui vous permet de scanner votre réseau local (Wi-Fi / LAN) pour détecter **tous les appareils connectés**.  
 Elle affiche pour chaque appareil son adresse IP, MAC, nom d’hôte (si possible), type d’appareil, système d’exploitation estimé et son état (connecté ou non) — tout ça dans une interface web élégante, responsive et facile à utiliser.  
 
 ---
@@ -68,12 +68,7 @@ http://127.0.0.1:5000
 
 🖼️ **Aperçu**
 
-*(Ajoutez un screenshot ici si vous le souhaitez)*
 
-🤝 **Contribution**
-
-Les contributions sont bienvenues !  
-N’hésitez pas à ouvrir une issue ou faire une pull request.
 
 📄 **Licence**
 
