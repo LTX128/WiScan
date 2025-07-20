@@ -31,7 +31,7 @@ Tu dois installer [Nmap](https://nmap.org/download.html) sur ta machine et **ajo
      Tu dois voir la version de nmap s’afficher.
 
 2. **Installer Python**
-   *Tuto :* https://www.youtube.com/watch?v=rq-36A2SvhE&t=9s
+Tuto : https://www.youtube.com/watch?v=rq-36A2SvhE&t=9s
 
 ## 🛠️ Installation & utilisation
 
