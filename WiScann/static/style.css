@@ -1,0 +1,164 @@
+/* Reset simple */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e2f, #121218);
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #70ffd9;
+  text-shadow: 0 0 12px #70ffd9aa;
+  margin-bottom: 20px;
+  letter-spacing: 1.2px;
+}
+
+#info {
+  color: #a0a0a0;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  user-select: none;
+  letter-spacing: 0.8px;
+}
+
+button#startScan {
+  background: #70ffd9;
+  color: #121218;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 32px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px #70ffd999;
+  margin-bottom: 25px;
+  user-select: none;
+}
+
+button#startScan:hover {
+  background: #3be7c1;
+  box-shadow: 0 7px 20px #3be7c199;
+  transform: scale(1.05);
+}
+
+table {
+  width: 100%;
+  max-width: 960px;
+  border-collapse: collapse;
+  background: #2a2a3d;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px #0008;
+  user-select: none;
+}
+
+thead {
+  background: #161624;
+}
+
+thead th {
+  padding: 18px 16px;
+  text-align: left;
+  color: #70ffd9;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  border-bottom: 2px solid #3be7c1aa;
+}
+
+tbody tr {
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+
+tbody tr:hover {
+  background: #3be7c130;
+}
+
+tbody td {
+  padding: 14px 16px;
+  color: #ccc;
+  font-size: 0.92rem;
+  border-bottom: 1px solid #3be7c130;
+  vertical-align: middle;
+}
+
+.status-alive {
+  color: #33ff77;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.status-dead {
+  color: #ff4e42;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.device-type {
+  font-style: italic;
+  color: #9eefff;
+}
+
+.vendor {
+  color: #d0f0f7;
+  font-weight: 600;
+}
+
+.host {
+  color: #a2d5ff;
+}
+
+.ip, .mac {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@media (max-width: 700px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    display: none;
+  }
+  tbody tr {
+    margin-bottom: 20px;
+    background: #222233;
+    border-radius: 12px;
+    padding: 15px;
+  }
+  tbody td {
+    padding-left: 50%;
+    position: relative;
+    text-align: left;
+  }
+  tbody td::before {
+    position: absolute;
+    left: 16px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: 700;
+    color: #70ffd9;
+  }
+  tbody td:nth-of-type(1)::before { content: "IP"; }
+  tbody td:nth-of-type(2)::before { content: "MAC"; }
+  tbody td:nth-of-type(3)::before { content: "Host"; }
+  tbody td:nth-of-type(4)::before { content: "Vendor"; }
+  tbody td:nth-of-type(5)::before { content: "Type"; }
+  tbody td:nth-of-type(6)::before { content: "Alive"; }
+}

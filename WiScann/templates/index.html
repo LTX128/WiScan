@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scan Réseau - Appareils Connectés</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #282c34);
+      color: #e0e0e0;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+      padding-right: 10px;
+    }
+    a.github-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: color 0.3s ease;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    a.github-link:hover {
+      color: #61dafb;
+      background: rgba(97, 218, 251, 0.15);
+      box-shadow: 0 0 10px #61dafb;
+    }
+    a.github-link svg {
+      width: 48px;
+      height: 48px;
+      fill: currentColor;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #61dafb;
+      text-shadow: 0 0 10px #61dafb;
+    }
+    #info {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 480px;
+      line-height: 1.4;
+      color: #ccc;
+    }
+    button#startScan {
+      background: #61dafb;
+      color: #282c34;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(97, 218, 251, 0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 30px;
+    }
+    button#startScan:hover:not(:disabled) {
+      background: #21a1f1;
+      box-shadow: 0 6px 20px rgba(33, 161, 241, 0.8);
+    }
+    button#startScan:disabled {
+      background: #4b99c6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    /* Loader */
+    #loader {
+      border: 5px solid #282c34;
+      border-top: 5px solid #61dafb;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 25px auto;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    table {
+      width: 100%;
+      max-width: 900px;
+      border-collapse: collapse;
+      background: #2c2f42;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    thead {
+      background: #16182b;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    thead th {
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #61dafb;
+      border-right: 1px solid #394264;
+    }
+    thead th:last-child {
+      border-right: none;
+    }
+    tbody tr {
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    tbody tr:hover {
+      background-color: #3a3f5a;
+    }
+    tbody td {
+      padding: 12px 20px;
+      font-size: 1rem;
+      color: #ddd;
+      border-right: 1px solid #394264;
+    }
+    tbody td:last-child {
+      border-right: none;
+      font-weight: 700;
+      text-align: center;
+    }
+    .status-alive {
+      color: #4ade80; /* vert */
+      text-shadow: 0 0 5px #4ade80;
+    }
+    .status-dead {
+      color: #f87171; /* rouge */
+      text-shadow: 0 0 5px #f87171;
+    }
+    .device-type {
+      font-style: italic;
+      color: #9ca3af;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tbody tr {
+        margin-bottom: 20px;
+        background: #202332;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      tbody td {
+        border: none;
+        padding: 10px 15px;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        font-size: 0.9rem;
+      }
+      tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        font-weight: 700;
+        color: #61dafb;
+        font-size: 0.9rem;
+      }
+      tbody td:last-child {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="github-link" href="https://github.com/LTX128" target="_blank" aria-label="Lien vers GitHub de LTX128">
+    <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0.2975C5.3725 0.2975 0 5.67 0 12.2975C0 17.6625 3.43875 22.1625 8.205 23.7275C8.805 23.8425 9.0225 23.4975 9.0225 23.2025C9.0225 22.9375 9.0125 22.1475 9.0075 21.1325C5.6725 21.8475 4.9675 19.4775 4.9675 19.4775C4.4225 18.0975 3.6325 17.7225 3.6325 17.7225C2.5475 17.0175 3.7175 17.0325 3.7175 17.0325C4.9225 17.1175 5.5525 18.2875 5.5525 18.2875C6.6225 20.1025 8.4225 19.5725 9.1175 19.2675C9.2325 18.4925 9.5475 17.9575 9.9 17.6525C7.2275 17.3475 4.4225 16.2875 4.4225 11.5875C4.4225 10.2625 4.8725 9.1725 5.6325 8.3125C5.5075 8.0075 5.1025 6.7475 5.7575 5.0975C5.7575 5.0975 6.7975 4.7675 9.0025 6.2925C9.9975 6.0125 11.0525 5.8725 12.1075 5.8675C13.1625 5.8725 14.2175 6.0125 15.2125 6.2925C17.4175 4.7675 18.4575 5.0975 18.4575 5.0975C19.1125 6.7475 18.7075 8.0075 18.5825 8.3125C19.3475 9.1725 19.7925 10.2625 19.7925 11.5875C19.7925 16.2975 16.9825 17.3425 14.3025 17.6425C14.75 18.0425 15.1425 18.7925 15.1425 19.9425C15.1425 21.6025 15.1325 22.8725 15.1325 23.2025C15.1325 23.4975 15.345 23.8475 15.95 23.7275C20.715 22.1625 24.1525 17.6625 24.1525 12.2975C24.1525 5.67 18.78 0.2975 12 0.2975Z"/>
+    </svg>
+  </a>
+</header>
+
+<h1>WiScan</h1>
+
+<div id="info">
+  Clique sur le bouton ci-dessous pour lancer le scan wifi.<br />
+  <strong>Attention :</strong> Le scan peut durer entre 1 et 2 minutes selon le nombre d'appareils connectés.
+</div>
+
+<div id="loader"></div>
+
+<button id="startScan">Lancer le scan</button>
+
+<table id="devicesTable" aria-label="Liste des appareils détectés">
+  <thead>
+    <tr>
+      <th>IP</th>
+      <th>MAC</th>
+      <th>Nom (Hostname)</th>
+      <th>Fournisseur (Vendor)</th>
+      <th>Type d'appareil</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Les lignes d’appareils seront insérées ici dynamiquement -->
+  </tbody>
+</table>
+
+<script>
+  const btn = document.getElementById('startScan');
+  const info = document.getElementById('info');
+  const tbody = document.querySelector('#devicesTable tbody');
+  const loader = document.getElementById('loader');
+
+  btn.addEventListener('click', () => {
+    btn.disabled = true;
+    info.innerHTML = "<strong>Scan en cours...</strong><br>Merci de patienter entre 1 et 2 minutes, cela dépend du nombre d'appareils.";
+    loader.style.display = 'block';
+
+    fetch('/scan')
+      .then(resp => resp.json())
+      .then(data => {
+        tbody.innerHTML = ''; // Vide le tableau avant de remplir
+
+        loader.style.display = 'none';
+
+        if (data.length === 0) {
+          info.textContent = "Aucun appareil détecté sur le réseau.";
+          btn.disabled = false;
+          return;
+        }
+
+        info.textContent = `Scan terminé : ${data.length} appareil(s) détecté(s).`;
+
+        data.forEach(dev => {
+          const tr = document.createElement('tr');
+
+          tr.innerHTML = `
+            <td data-label="IP" class="ip">${dev.ip}</td>
+            <td data-label="MAC" class="mac">${dev.mac}</td>
+            <td data-label="Nom" class="host">${dev.host || 'Inconnu'}</td>
+            <td data-label="Fournisseur" class="vendor">${dev.vendor || 'Inconnu'}</td>
+            <td data-label="Type" class="device-type">${dev.type || 'Inconnu'}</td>
+            <td data-label="Status" class="${dev.alive ? 'status-alive' : 'status-dead'}">${dev.alive ? 'En ligne' : 'Hors ligne'}</td>
+          `;
+
+          tbody.appendChild(tr);
+        });
+
+        btn.disabled = false;
+      })
+      .catch(err => {
+        loader.style.display = 'none';
+        info.textContent = "Erreur lors du scan. Vérifie la console.";
+        console.error(err);
+        btn.disabled = false;
+      });
+  });
+</script>
+
+</body>
+</html>
