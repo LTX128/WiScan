@@ -5,10 +5,6 @@ Elle affiche pour chaque appareil son adresse IP, MAC, nom d’hôte (si possibl
 
 ---
 
-## ⚠️ WiScan n'est pas compatible sur téléphone !
-
----
-
 ## 🚀 Fonctionnalités
 
 - Scan automatique du réseau local  
