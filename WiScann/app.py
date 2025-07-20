@@ -128,7 +128,7 @@ def index():
 
 @app.route("/scan")
 def scan():
-    network = "192.168.1.0/24"
+    network = "192.x.x.x/24"     #^^^^^^^^^^Changement ICI !^^^^^^^^^^
     devices = scan_network(network)
     return jsonify(devices)
 
