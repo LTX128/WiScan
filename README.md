@@ -52,7 +52,7 @@ ipconfig
 1. **Clonez ce dépôt sur votre machine :**
 
 ```bash
-git clone https://github.com/ton-utilisateur/WiScan.git
+git clone https://github.com/LTX128/WiScan.git
 cd WiScan
 ```
 
