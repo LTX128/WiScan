@@ -51,7 +51,6 @@ def guess_device_type(vendor, hostname):
     return "Inconnu"
 
 def scan_network(network="192.168.1.0/24"):
-    # 1) Première étape : faire un scan ARP pour récupérer les MAC des appareils en ligne
     arp = ARP(pdst=network)
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = ether/arp
@@ -61,10 +60,8 @@ def scan_network(network="192.168.1.0/24"):
         print(f"Erreur scan ARP: {e}")
         result = []
 
-    # Mapping IP -> MAC récupérés via ARP
     macs = {received.psrc: received.hwsrc for sent, received in result}
 
-    # On prépare à scanner toutes les IP du réseau
     net = ipaddress.ip_network(network, strict=False)
     all_ips = [str(ip) for ip in net.hosts()]
 
@@ -85,7 +82,6 @@ def scan_network(network="192.168.1.0/24"):
 
             alive = ping(ip)
             port80 = scan_port(ip)
-            # On ne mesure plus la latence pour accélérer
 
             try:
                 vendor = mac_lookup.lookup(mac) if mac != "Inconnu" else "Inconnu"
@@ -132,7 +128,7 @@ def index():
 
 @app.route("/scan")
 def scan():
-    network = "192.168.1.0/24"  # Remplace par ton réseau
+    network = "192.168.1.0/24"
     devices = scan_network(network)
     return jsonify(devices)
 
