@@ -37,3 +37,29 @@ Dans le dossier du projet, lance :
 ```bash
 pip install -r requirements.txt
 ```
+## 🛠️ Installation & utilisation
+Clone ce dépôt sur ta machine :
+
+bash
+Copier
+Modifier
+git clone https://github.com/ton-utilisateur/WiScan.git
+cd WiScan
+Installe les dépendances :
+
+bash
+Copier
+Modifier
+pip install -r requirements.txt
+Lance le serveur Flask :
+
+bash
+Copier
+Modifier
+python app.py
+Ouvre ton navigateur et va à l’adresse :
+
+cpp
+Copier
+Modifier
+http://127.0.0.1:5000
