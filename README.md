@@ -68,7 +68,7 @@ http://127.0.0.1:5000
 
 🖼️ **Aperçu**
 
-
+<img width="1225" height="949" alt="Capture d'écran 2025-07-20 031654" src="https://github.com/user-attachments/assets/f7b2dc29-e3ec-4a8d-b419-e5bec36590f3" />
 
 📄 **Licence**
 
